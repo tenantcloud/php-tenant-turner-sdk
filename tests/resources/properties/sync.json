@@ -1,0 +1,24 @@
+{
+	"Data": [
+		{
+			"PropertyId": 12345,
+			"Address": "123 Main Street",
+			"Address2": "Unit A",
+			"City": "Richmond",
+			"State": "VA",
+			"ZipCode": "23235",
+			"ExternalId": "7b65220d-fadc-4295-b393-d5b4432e4b13",
+			"ExternalSource": "Appfolio"
+		},
+		{
+			"PropertyId": 12346,
+			"Address": "124 Main St",
+			"Address2": null,
+			"City": "Richmond",
+			"State": "VA",
+			"ZipCode": "23235",
+			"ExternalId": null,
+			"ExternalSource": null
+		}
+	]
+}

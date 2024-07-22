@@ -3,6 +3,14 @@
 
 ### Bug Fixes
 
+* Create release ([62139d8](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/62139d8086c9fbb3c1f695241648c90f3f806798))
+* Create release ([f70789a](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/f70789a04cffc1176a2528dcfc06af1256237caf))
+
+# 1.0.0-alpha.1 (2024-07-22)
+
+
+### Bug Fixes
+
 * Changed tag for tests ([4a59bf4](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/4a59bf44148bc31a29813207e5f96de5808d2e4d))
 * Fixed cache name ([9811576](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/9811576cb3434d0d092eb6603f473df8590be5c5))
 * Fixed cs-fix ([61b11b4](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/61b11b46f68cc02d2605771d8b7578a5407471e3))

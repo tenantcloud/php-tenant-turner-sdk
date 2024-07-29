@@ -1,3 +1,10 @@
+# [1.0.0-alpha.2](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2024-07-29)
+
+
+### Features
+
+* Added Fake API ([#3](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/3)) ([6b08dcf](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/6b08dcf38edf65fb0eb4e5bbbe9e22e3bf57b4a7))
+
 # 1.0.0-alpha.1 (2024-07-22)
 
 

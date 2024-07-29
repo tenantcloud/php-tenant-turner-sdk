@@ -6,6 +6,7 @@ use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use TenantCloud\TenantTurner\Client\TenantTurnerClient;
 use TenantCloud\TenantTurner\Client\TenantTurnerClientImpl;
+use TenantCloud\TenantTurner\Fake\FakeTenantTurnerClient;
 
 /**
  * Provides Tenant Turner SDK.
@@ -29,11 +30,15 @@ final class TenantTurnerSDKServiceProvider extends ServiceProvider
 	{
 		$config = $this->app->make(Repository::class);
 
-		$this->app->bind(TenantTurnerClient::class, function () use ($config) {
-			return new TenantTurnerClientImpl(
-				$config->get('tenant_turner.api_key'),
-				$config->get('tenant_turner.base_url'),
-			);
-		});
+		if (!$config->get('tenant_turner.fake_client')) {
+			$this->app->bind(TenantTurnerClient::class, function () use ($config) {
+				return new TenantTurnerClientImpl(
+					$config->get('tenant_turner.api_key'),
+					$config->get('tenant_turner.base_url'),
+				);
+			});
+		} else {
+			$this->app->bind(TenantTurnerClient::class, FakeTenantTurnerClient::class);
+		}
 	}
 }

@@ -4,6 +4,7 @@ namespace Tests\Functional\Customers;
 
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
+use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 use TenantCloud\TenantTurner\Customers\Enum\CountryEnum;
 use TenantCloud\TenantTurner\Customers\Enum\TimezoneEnum;
 use Tests\TestCase;
@@ -26,6 +27,19 @@ class CustomersApiTest extends TestCase
 		$this->assertSame('leads+67890@tenantturnermail.com', $createdCustomerDto->getListingEmail());
 		$this->assertSame('555-123-4567', $createdCustomerDto->getListingPhone());
 		$this->assertSame('q23c9r480tnyqc234nv9807yq324vn89cy0t', $createdCustomerDto->getApiKey());
+	}
+
+	public function testRefreshApiKey(): void
+	{
+		$tenantTurnerClient = $this->mockResponse(
+			201,
+			file_get_contents(__DIR__ . '/../../resources/customers/refresh-api-key.json')
+		);
+
+		$refreshedApiKey = $tenantTurnerClient->customers()->refreshApiKey(12345, 'tt_live_qwerty12345');
+
+		$this->assertInstanceOf(RefreshedApiKeyDTO::class, $refreshedApiKey);
+		$this->assertSame('tt_live_11111111_2222_3333_4444_a75aa77d0bcc', $refreshedApiKey->getApiKey());
 	}
 
 	public function testDeactivateCustomerSuccess()

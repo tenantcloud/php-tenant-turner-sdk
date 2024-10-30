@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use TenantCloud\TenantTurner\Customers\CustomersApi;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
+use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 
 class FakeCustomersApi implements CustomersApi
 {
@@ -27,6 +28,12 @@ class FakeCustomersApi implements CustomersApi
 			->setCustomerId($customerId)
 			->setListingPhone('15555' . random_int(111111, 999999))
 			->setListingEmail("leads+{$customerId}@tenantturnermail.com")
+			->setApiKey(Str::random());
+	}
+
+	public function refreshApiKey(int $customerId, string $apiKey): RefreshedApiKeyDTO
+	{
+		return RefreshedApiKeyDTO::create()
 			->setApiKey(Str::random());
 	}
 

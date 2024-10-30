@@ -7,6 +7,7 @@ use GuzzleHttp\RequestOptions;
 use TenantCloud\TenantTurner\Client\RequestHelper;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
+use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 
 use function TenantCloud\GuzzleHelper\psr_response_to_json;
 
@@ -15,6 +16,7 @@ class CustomersApiImpl implements CustomersApi
 	use RequestHelper;
 
 	private const CREATE_CUSTOMER_API = '/v1/customers';
+	private const REFRESH_API_KEY = '/v1/customers/%s/refresh-api-key';
 	private const DEACTIVATE_CUSTOMER_API = '/v1/customers/%s';
 
 	public function __construct(
@@ -35,6 +37,21 @@ class CustomersApiImpl implements CustomersApi
 		$response = psr_response_to_json($jsonResponse);
 
 		return CustomerCreatedDTO::from($response);
+	}
+
+	public function refreshApiKey(int $customerId, string $apiKey): RefreshedApiKeyDTO
+	{
+		$jsonResponse = $this->httpClient->post(
+			sprintf(self::REFRESH_API_KEY, $customerId),
+			[
+				RequestOptions::HEADERS => $this->setAuthHeader($this->apiKey),
+				RequestOptions::JSON    => ['ApiKey' => $apiKey],
+			]
+		);
+
+		$response = psr_response_to_json($jsonResponse);
+
+		return RefreshedApiKeyDTO::from($response);
 	}
 
 	public function deactivate(int $customerId): void

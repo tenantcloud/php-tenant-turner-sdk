@@ -128,7 +128,7 @@ class PropertyDTO extends PascalDataTransferDTO
 			return $this->set('DateAvailable', null);
 		}
 
-		return $this->set('DateAvailable', Carbon::parse($dateAvailable));
+		return $this->set('DateAvailable', Carbon::parse($dateAvailable)->format('Y-m-d\TH:i:s.v'));
 	}
 
 	public function setMinimumLeaseTerm(?MinimumLeaseTermEnum $minimumLeaseTerm): self
@@ -173,13 +173,9 @@ class PropertyDTO extends PascalDataTransferDTO
 		return $this->set('Owners', $result);
 	}
 
-	public function setPropertyFeatures(array|PropertyFeaturesDTO|null $propertyFeatures): self
+	public function setPropertyFeatures(array|PropertyFeaturesDTO $propertyFeatures): self
 	{
-		if (!$propertyFeatures) {
-			return $this->set('PropertyFeatures', null);
-		}
-
-		if ($propertyFeatures 	instanceof PropertyFeaturesDTO) {
+		if ($propertyFeatures instanceof PropertyFeaturesDTO) {
 			return $this->set('PropertyFeatures', $propertyFeatures);
 		}
 

@@ -26,7 +26,7 @@ class FakeCustomersApi implements CustomersApi
 
 		return CustomerCreatedDTO::create()
 			->setCustomerId($customerId)
-			->setListingPhone('15555' . random_int(111111, 999999))
+			->setListingPhone('1800' . random_int(1111111, 9999999))
 			->setListingEmail("leads+{$customerId}@tenantturnermail.com")
 			->setApiKey(Str::random());
 	}

@@ -8,6 +8,7 @@ use TenantCloud\TenantTurner\Client\RequestHelper;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
+use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
 
 use function TenantCloud\GuzzleHelper\psr_response_to_json;
 
@@ -18,6 +19,7 @@ class CustomersApiImpl implements CustomersApi
 	private const CREATE_CUSTOMER_API = '/v1/customers';
 	private const REFRESH_API_KEY = '/v1/customers/%s/refresh-api-key';
 	private const DEACTIVATE_CUSTOMER_API = '/v1/customers/%s';
+	private const STATUS_API = '/v1/customers/%s/status';
 
 	public function __construct(
 		private readonly string $apiKey,
@@ -52,6 +54,21 @@ class CustomersApiImpl implements CustomersApi
 		$response = psr_response_to_json($jsonResponse);
 
 		return RefreshedApiKeyDTO::from($response);
+	}
+
+	public function status(int $customerId, string $apiKey): StatusDTO
+	{
+		$jsonResponse = $this->httpClient->get(
+			sprintf(self::STATUS_API, $customerId),
+			[
+				RequestOptions::HEADERS => $this->setAuthHeader($this->apiKey),
+				RequestOptions::JSON    => ['ApiKey' => $apiKey],
+			]
+		);
+
+		$response = psr_response_to_json($jsonResponse);
+
+		return StatusDTO::from($response);
 	}
 
 	public function deactivate(int $customerId): void

@@ -5,6 +5,7 @@ namespace Tests\Functional\Customers;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
+use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
 use TenantCloud\TenantTurner\Customers\Enum\CountryEnum;
 use TenantCloud\TenantTurner\Customers\Enum\TimezoneEnum;
 use Tests\TestCase;
@@ -40,6 +41,19 @@ class CustomersApiTest extends TestCase
 
 		$this->assertInstanceOf(RefreshedApiKeyDTO::class, $refreshedApiKey);
 		$this->assertSame('tt_live_11111111_2222_3333_4444_a75aa77d0bcc', $refreshedApiKey->getApiKey());
+	}
+
+	public function testStatus(): void
+	{
+		$tenantTurnerClient = $this->mockResponse(
+			200,
+			file_get_contents(__DIR__ . '/../../resources/customers/status.json')
+		);
+
+		$status = $tenantTurnerClient->customers()->status(12345, 'tt_live_qwerty12345');
+
+		$this->assertInstanceOf(StatusDTO::class, $status);
+		$this->assertTrue($status->getIsActive());
 	}
 
 	public function testDeactivateCustomerSuccess()

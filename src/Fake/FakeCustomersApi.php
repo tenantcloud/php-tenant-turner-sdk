@@ -8,6 +8,7 @@ use TenantCloud\TenantTurner\Customers\CustomersApi;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
+use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
 
 class FakeCustomersApi implements CustomersApi
 {
@@ -35,6 +36,12 @@ class FakeCustomersApi implements CustomersApi
 	{
 		return RefreshedApiKeyDTO::create()
 			->setApiKey(Str::random());
+	}
+
+	public function status(int $customerId, string $apiKey): StatusDTO
+	{
+		return StatusDTO::create()
+			->setIsActive(true);
 	}
 
 	public function deactivate(int $customerId): void

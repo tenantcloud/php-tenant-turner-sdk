@@ -50,7 +50,7 @@ class CustomersApiTest extends TestCase
 			file_get_contents(__DIR__ . '/../../resources/customers/status.json')
 		);
 
-		$status = $tenantTurnerClient->customers()->status(12345, 'tt_live_qwerty12345');
+		$status = $tenantTurnerClient->customers()->status(12345);
 
 		$this->assertInstanceOf(StatusDTO::class, $status);
 		$this->assertTrue($status->getIsActive());

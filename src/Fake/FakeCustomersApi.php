@@ -3,6 +3,7 @@
 namespace TenantCloud\TenantTurner\Fake;
 
 use Illuminate\Contracts\Cache\Repository;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use TenantCloud\TenantTurner\Customers\CustomersApi;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
@@ -40,6 +41,13 @@ class FakeCustomersApi implements CustomersApi
 
 	public function status(int $customerId): StatusDTO
 	{
+		$customer = $this->cache->get("customers.{$customerId}");
+
+		if ($customer && Arr::get($customer, 'Email') === 'inactivetenantturner@tenantcloud.com') {
+			return StatusDTO::create()
+				->setIsActive(false);
+		}
+
 		return StatusDTO::create()
 			->setIsActive(true);
 	}

@@ -56,12 +56,13 @@ class CustomersApiImpl implements CustomersApi
 		return RefreshedApiKeyDTO::from($response);
 	}
 
-	public function status(int $customerId): StatusDTO
+	public function status(int $customerId, string $apiKey): StatusDTO
 	{
 		$jsonResponse = $this->httpClient->get(
 			sprintf(self::STATUS_API, $customerId),
 			[
 				RequestOptions::HEADERS => $this->setAuthHeader($this->apiKey),
+				RequestOptions::JSON    => ['ApiKey' => $apiKey],
 			]
 		);
 

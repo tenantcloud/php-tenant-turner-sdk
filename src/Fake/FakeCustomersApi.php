@@ -38,7 +38,7 @@ class FakeCustomersApi implements CustomersApi
 			->setApiKey(Str::random());
 	}
 
-	public function status(int $customerId): StatusDTO
+	public function status(int $customerId, string $apiKey): StatusDTO
 	{
 		return StatusDTO::create()
 			->setIsActive(true);

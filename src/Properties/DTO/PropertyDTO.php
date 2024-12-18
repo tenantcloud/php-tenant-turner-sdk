@@ -188,14 +188,16 @@ class PropertyDTO extends PascalDataTransferDTO
 			return $this->set('PropertyAmenities', []);
 		}
 
-		foreach ($propertyAmenities as $key => $amenity) {
+		$amenities = [];
+
+		foreach ($propertyAmenities as $amenity) {
 			if (!$amenity instanceof PropertyAmenitiesEnum) {
 				throw new InvalidArgumentException('PropertyAmenities must be instance of PropertyAmenitiesEnum::class');
 			}
 
-			$propertyAmenities[$key] = $amenity->value;
+			$amenities[] = $amenity->value;
 		}
 
-		return $this->set('PropertyAmenities', $propertyAmenities);
+		return $this->set('PropertyAmenities', $amenities);
 	}
 }

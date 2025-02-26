@@ -31,12 +31,10 @@ final class TenantTurnerSDKServiceProvider extends ServiceProvider
 		$config = $this->app->make(Repository::class);
 
 		if (!$config->get('tenant_turner.fake_client')) {
-			$this->app->bind(TenantTurnerClient::class, function () use ($config) {
-				return new TenantTurnerClientImpl(
-					$config->get('tenant_turner.api_key'),
-					$config->get('tenant_turner.base_url'),
-				);
-			});
+			$this->app->bind(TenantTurnerClient::class, fn () => new TenantTurnerClientImpl(
+				$config->get('tenant_turner.api_key'),
+				$config->get('tenant_turner.base_url'),
+			));
 		} else {
 			$this->app->bind(TenantTurnerClient::class, FakeTenantTurnerClient::class);
 		}

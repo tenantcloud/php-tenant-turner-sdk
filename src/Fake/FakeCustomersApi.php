@@ -7,7 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use TenantCloud\TenantTurner\Customers\CustomersApi;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
-use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
+use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
 
@@ -17,7 +17,7 @@ class FakeCustomersApi implements CustomersApi
 		private readonly Repository $cache
 	) {}
 
-	public function create(CustomerDTO $customerDTO): CustomerCreatedDTO
+	public function create(CustomerCreateDTO $customerDTO): CustomerCreatedDTO
 	{
 		$customerId = random_int(1, PHP_INT_MAX);
 

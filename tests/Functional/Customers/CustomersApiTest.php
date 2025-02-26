@@ -3,8 +3,9 @@
 namespace Tests\Functional\Customers;
 
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
-use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
+use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
 use TenantCloud\TenantTurner\Customers\Enum\CountryEnum;
+use TenantCloud\TenantTurner\Customers\Enum\TenantCloudAccountTypeEnum;
 use TenantCloud\TenantTurner\Customers\Enum\TimezoneEnum;
 use Tests\TestCase;
 
@@ -37,22 +38,23 @@ class CustomersApiTest extends TestCase
 		$tenantTurnerClient->customers()->deactivate(12345);
 	}
 
-	public function getFilledCustomerDto(): CustomerDTO
+	public function getFilledCustomerDto(): CustomerCreateDTO
 	{
-		return CustomerDTO::from([
-			'TenantCloudAccountId' => 12350,
-			'CompanyName'          => 'New Co',
-			'UserFirstName'        => 'John',
-			'UserLastName'         => 'Doe',
-			'Email'                => 'john.doe@gmail.com',
-			'Phone'                => '18045556789',
-			'Timezone'             => TimezoneEnum::EASTERN_STANDARD_TIME,
-			'Address1'             => '4820 Lake Brook Dr',
-			'Address2'             => null,
-			'City'                 => 'Glen Allen',
-			'State'                => 'VA',
-			'PostalCode'           => '23060',
-			'Country'              => CountryEnum::US,
+		return CustomerCreateDTO::from([
+			'TenantCloudAccountId'   => 12350,
+			'TenantCloudAccountType' => TenantCloudAccountTypeEnum::LISTINGS,
+			'CompanyName'            => 'New Co',
+			'UserFirstName'          => 'John',
+			'UserLastName'           => 'Doe',
+			'Email'                  => 'john.doe@gmail.com',
+			'Phone'                  => '18045556789',
+			'Timezone'               => TimezoneEnum::EASTERN_STANDARD_TIME,
+			'Address1'               => '4820 Lake Brook Dr',
+			'Address2'               => null,
+			'City'                   => 'Glen Allen',
+			'State'                  => 'VA',
+			'PostalCode'             => '23060',
+			'Country'                => CountryEnum::US,
 		]);
 	}
 }

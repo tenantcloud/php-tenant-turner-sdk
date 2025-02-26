@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use TenantCloud\TenantTurner\Client\RequestHelper;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
-use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
+use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
 
 use function TenantCloud\GuzzleHelper\psr_response_to_json;
 
@@ -22,7 +22,7 @@ class CustomersApiImpl implements CustomersApi
 		private readonly Client $httpClient,
 	) {}
 
-	public function create(CustomerDTO $customerDTO): CustomerCreatedDTO
+	public function create(CustomerCreateDTO $customerDTO): CustomerCreatedDTO
 	{
 		$jsonResponse = $this->httpClient->post(
 			self::CREATE_CUSTOMER_API,

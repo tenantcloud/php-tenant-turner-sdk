@@ -4,12 +4,15 @@ namespace TenantCloud\TenantTurner\Customers\DTO;
 
 use TenantCloud\DataTransferObjects\PascalDataTransferDTO;
 use TenantCloud\TenantTurner\Customers\Enum\CountryEnum;
+use TenantCloud\TenantTurner\Customers\Enum\TenantCloudAccountTypeEnum;
 use TenantCloud\TenantTurner\Customers\Enum\TimezoneEnum;
 
 /**
  * @method self        setTenantCloudAccountId(int $tenantCloudAccountId)
  * @method int         getTenantCloudAccountId()
  * @method bool        hasTenantCloudAccountId()
+ * @method string      getTenantCloudAccountType()
+ * @method bool        hasTenantCloudAccountType()
  * @method self        setCompanyName(string $companyName)
  * @method string      getCompanyName()
  * @method bool        hasCompanyName()
@@ -45,10 +48,11 @@ use TenantCloud\TenantTurner\Customers\Enum\TimezoneEnum;
  * @method string      getCountry()
  * @method bool        hasCountry()
  */
-class CustomerDTO extends PascalDataTransferDTO
+class CustomerCreateDTO extends PascalDataTransferDTO
 {
 	protected array $fields = [
 		'TenantCloudAccountId',
+		'TenantCloudAccountType',
 		'CompanyName',
 		'UserFirstName',
 		'UserLastName',
@@ -62,6 +66,11 @@ class CustomerDTO extends PascalDataTransferDTO
 		'PostalCode',
 		'Country',
 	];
+
+	public function setTenantCloudAccountType(TenantCloudAccountTypeEnum $tenantCloudAccountTypeEnum): self
+	{
+		return $this->set('TenantCloudAccountType', $tenantCloudAccountTypeEnum->value);
+	}
 
 	public function setTimezone(TimezoneEnum $timezone): self
 	{

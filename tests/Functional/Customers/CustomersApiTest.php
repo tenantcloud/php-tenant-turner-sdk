@@ -29,6 +29,18 @@ class CustomersApiTest extends TestCase
 		$this->assertSame('q23c9r480tnyqc234nv9807yq324vn89cy0t', $createdCustomerDto->getApiKey());
 	}
 
+	public function testInvalidateApiKeySuccess(): void
+	{
+		$tenantTurnerClient = $this->mockResponse(
+			201,
+			file_get_contents(__DIR__ . '/../../resources/customers/invalidate-api-key.json')
+		);
+
+		$newApiKey = $tenantTurnerClient->customers()->invalidateApiKey(12345, 'old-api-key');
+
+		$this->assertSame('q23c9r480tnyqc234nv9807yq324vn89cy0t', $newApiKey);
+	}
+
 	public function testDeactivateCustomerSuccess()
 	{
 		$this->expectNotToPerformAssertions();

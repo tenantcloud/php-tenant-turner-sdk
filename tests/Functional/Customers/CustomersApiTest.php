@@ -4,6 +4,7 @@ namespace Tests\Functional\Customers;
 
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
+use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
 use TenantCloud\TenantTurner\Customers\Enum\CountryEnum;
 use TenantCloud\TenantTurner\Customers\Enum\TenantCloudAccountTypeEnum;
 use TenantCloud\TenantTurner\Customers\Enum\TimezoneEnum;
@@ -39,6 +40,22 @@ class CustomersApiTest extends TestCase
 		$newApiKey = $tenantTurnerClient->customers()->invalidateApiKey(12345, 'old-api-key');
 
 		$this->assertSame('q23c9r480tnyqc234nv9807yq324vn89cy0t', $newApiKey);
+	}
+
+	public function testGetStatusSuccess(): void
+	{
+		$tenantTurnerClient = $this->mockResponse(
+			200,
+			file_get_contents(__DIR__ . '/../../resources/customers/status.json')
+		);
+
+		$statusDto = $tenantTurnerClient->customers()->getStatus(12345);
+
+		$this->assertInstanceOf(StatusDTO::class, $statusDto);
+		$this->assertSame(12345, $statusDto->getTenantCloudAccountId());
+		$this->assertSame('Listing', $statusDto->getTenantCloudAccountType());
+		$this->assertTrue($statusDto->getManageLeadsInTenantTurner());
+		$this->assertTrue($statusDto->getIsActive());
 	}
 
 	public function testDeactivateCustomerSuccess()

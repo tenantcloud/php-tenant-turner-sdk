@@ -1,0 +1,6 @@
+{
+	"TenantCloudAccountId": 12345,
+	"TenantCloudAccountType": "Listing",
+	"ManageLeadsInTenantTurner": true,
+	"IsActive": true
+}

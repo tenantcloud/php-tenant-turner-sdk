@@ -10,6 +10,7 @@ use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
+use TenantCloud\TenantTurner\Customers\Enum\TenantCloudAccountTypeEnum;
 
 class FakeCustomersApi implements CustomersApi
 {
@@ -43,13 +44,27 @@ class FakeCustomersApi implements CustomersApi
 	{
 		$customer = $this->cache->get("customers.{$customerId}");
 
-		if ($customer && Arr::get($customer, 'Email') === 'inactivetenantturner@tenantcloud.com') {
+		if ($customer && Arr::get($customer, 'Email') === 'subscribed_turner@tenantcloud.com') {
 			return StatusDTO::create()
-				->setIsActive(false);
+				->setTenantCloudAccountType(TenantCloudAccountTypeEnum::SUBSCRIPTION->value)
+				->setIsActive(true)
+				->setManageLeadsInTenantTurner(true)
+				->setTenantCloudAccountId($customerId);
+		}
+
+		if ($customer && Arr::get($customer, 'Email') === 'listings+leads_turner@tenantcloud.com') {
+			return StatusDTO::create()
+				->setTenantCloudAccountType(TenantCloudAccountTypeEnum::LISTINGS->value)
+				->setIsActive(true)
+				->setManageLeadsInTenantTurner(true)
+				->setTenantCloudAccountId($customerId);
 		}
 
 		return StatusDTO::create()
-			->setIsActive(true);
+			->setIsActive(true)
+			->setManageLeadsInTenantTurner(false)
+			->setTenantCloudAccountType(TenantCloudAccountTypeEnum::LISTINGS->value)
+			->setTenantCloudAccountId($customerId);
 	}
 
 	public function deactivate(int $customerId): void

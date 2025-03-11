@@ -13,7 +13,7 @@ interface CustomersApi
 
 	public function refreshApiKey(int $customerId, string $apiKey): RefreshedApiKeyDTO;
 
-	public function status(int $customerId): StatusDTO;
+	public function status(int $customerId, ?string $fakeEmail = null): StatusDTO;
 
 	public function deactivate(int $customerId): void;
 }

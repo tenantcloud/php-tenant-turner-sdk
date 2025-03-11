@@ -3,7 +3,6 @@
 namespace TenantCloud\TenantTurner\Fake;
 
 use Illuminate\Contracts\Cache\Repository;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use TenantCloud\TenantTurner\Customers\CustomersApi;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
@@ -29,7 +28,7 @@ class FakeCustomersApi implements CustomersApi
 
 		return CustomerCreatedDTO::create()
 			->setCustomerId($customerId)
-			->setListingPhone('1800' . random_int(1111111, 9999999))
+			->setListingPhone('18008888888')
 			->setListingEmail("leads+{$customerId}@tenantturnermail.com")
 			->setApiKey(Str::random());
 	}
@@ -40,11 +39,9 @@ class FakeCustomersApi implements CustomersApi
 			->setApiKey(Str::random());
 	}
 
-	public function status(int $customerId): StatusDTO
+	public function status(int $customerId, ?string $fakeEmail = null): StatusDTO
 	{
-		$customer = $this->cache->get("customers.{$customerId}");
-
-		if ($customer && Arr::get($customer, 'Email') === 'subscribed_turner@tenantcloud.com') {
+		if ($fakeEmail === 'subscribed_turner@tenantcloud.com') {
 			return StatusDTO::create()
 				->setTenantCloudAccountType(TenantCloudAccountTypeEnum::SUBSCRIPTION->value)
 				->setIsActive(true)
@@ -52,7 +49,7 @@ class FakeCustomersApi implements CustomersApi
 				->setTenantCloudAccountId($customerId);
 		}
 
-		if ($customer && Arr::get($customer, 'Email') === 'listings+leads_turner@tenantcloud.com') {
+		if ($fakeEmail === 'listings+leads_turner@tenantcloud.com') {
 			return StatusDTO::create()
 				->setTenantCloudAccountType(TenantCloudAccountTypeEnum::LISTINGS->value)
 				->setIsActive(true)

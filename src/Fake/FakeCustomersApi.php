@@ -19,7 +19,7 @@ class FakeCustomersApi implements CustomersApi
 
 	public function create(CustomerCreateDTO $customerDTO): CustomerCreatedDTO
 	{
-		$customerId = random_int(1, PHP_INT_MAX);
+		$customerId = random_int(1, 100000);
 
 		$this->cache->put(
 			"customers.{$customerId}",

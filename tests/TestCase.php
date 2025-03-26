@@ -40,14 +40,12 @@ class TestCase extends BaseTestCase
 
 		$config = $this->app->make(Repository::class);
 
-		$this->app->bind(TenantTurnerClient::class, function () use ($config, $client) {
-			return new TenantTurnerClientImpl(
-				$config->get('tenant_turner.api_key') ?? '',
-				$config->get('tenant_turner.base_url') ?? '',
-				30,
-				$client
-			);
-		});
+		$this->app->bind(TenantTurnerClient::class, fn () => new TenantTurnerClientImpl(
+			$config->get('tenant_turner.api_key') ?? '',
+			$config->get('tenant_turner.base_url') ?? '',
+			30,
+			$client
+		));
 
 		return $this->app->make(TenantTurnerClient::class);
 	}

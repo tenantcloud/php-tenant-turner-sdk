@@ -3,13 +3,14 @@
 namespace TenantCloud\TenantTurner\Fake;
 
 use Illuminate\Contracts\Cache\Repository;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use TenantCloud\TenantTurner\Customers\CustomersApi;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
+use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
+use TenantCloud\TenantTurner\Customers\Enum\TenantCloudAccountTypeEnum;
 
 class FakeCustomersApi implements CustomersApi
 {
@@ -17,9 +18,9 @@ class FakeCustomersApi implements CustomersApi
 		private readonly Repository $cache
 	) {}
 
-	public function create(CustomerDTO $customerDTO): CustomerCreatedDTO
+	public function create(CustomerCreateDTO $customerDTO): CustomerCreatedDTO
 	{
-		$customerId = random_int(1, PHP_INT_MAX);
+		$customerId = random_int(1, 100000);
 
 		$this->cache->put(
 			"customers.{$customerId}",
@@ -28,7 +29,7 @@ class FakeCustomersApi implements CustomersApi
 
 		return CustomerCreatedDTO::create()
 			->setCustomerId($customerId)
-			->setListingPhone('1800' . random_int(1111111, 9999999))
+			->setListingPhone('18008888888')
 			->setListingEmail("leads+{$customerId}@tenantturnermail.com")
 			->setApiKey(Str::random());
 	}
@@ -39,21 +40,40 @@ class FakeCustomersApi implements CustomersApi
 			->setApiKey(Str::random());
 	}
 
-	public function status(int $customerId): StatusDTO
+	public function status(int $customerId, ?string $fakeEmail = null): StatusDTO
 	{
-		$customer = $this->cache->get("customers.{$customerId}");
-
-		if ($customer && Arr::get($customer, 'Email') === 'inactivetenantturner@tenantcloud.com') {
+		if ($fakeEmail === 'subscribed_turner@tenantcloud.com') {
 			return StatusDTO::create()
-				->setIsActive(false);
+				->setTenantCloudAccountType(TenantCloudAccountTypeEnum::SUBSCRIPTION->value)
+				->setIsActive(true)
+				->setManageLeadsInTenantTurner(true)
+				->setTenantCloudAccountId($customerId);
+		}
+
+		if ($fakeEmail === 'listings+leads_turner@tenantcloud.com') {
+			return StatusDTO::create()
+				->setTenantCloudAccountType(TenantCloudAccountTypeEnum::LISTINGS->value)
+				->setIsActive(true)
+				->setManageLeadsInTenantTurner(true)
+				->setTenantCloudAccountId($customerId);
 		}
 
 		return StatusDTO::create()
-			->setIsActive(true);
+			->setIsActive(true)
+			->setManageLeadsInTenantTurner(false)
+			->setTenantCloudAccountType(TenantCloudAccountTypeEnum::LISTINGS->value)
+			->setTenantCloudAccountId($customerId);
 	}
 
 	public function deactivate(int $customerId): void
 	{
 		// do nothing
+	}
+
+	public function get(string $email): CustomerDTO
+	{
+		return CustomerDTO::create()
+			->setCustomerId(random_int(1, 100000))
+			->setApiKey(Str::random());
 	}
 }

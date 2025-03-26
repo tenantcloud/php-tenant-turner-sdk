@@ -3,10 +3,12 @@
 namespace Tests\Functional\Customers;
 
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
+use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
 use TenantCloud\TenantTurner\Customers\Enum\CountryEnum;
+use TenantCloud\TenantTurner\Customers\Enum\TenantCloudAccountTypeEnum;
 use TenantCloud\TenantTurner\Customers\Enum\TimezoneEnum;
 use Tests\TestCase;
 
@@ -56,7 +58,7 @@ class CustomersApiTest extends TestCase
 		$this->assertTrue($status->getIsActive());
 	}
 
-	public function testDeactivateCustomerSuccess()
+	public function testDeactivateCustomerSuccess(): void
 	{
 		$this->expectNotToPerformAssertions();
 
@@ -65,22 +67,37 @@ class CustomersApiTest extends TestCase
 		$tenantTurnerClient->customers()->deactivate(12345);
 	}
 
-	public function getFilledCustomerDto(): CustomerDTO
+	public function testGet(): void
 	{
-		return CustomerDTO::from([
-			'TenantCloudAccountId' => 12350,
-			'CompanyName'          => 'New Co',
-			'UserFirstName'        => 'John',
-			'UserLastName'         => 'Doe',
-			'Email'                => 'john.doe@gmail.com',
-			'Phone'                => '18045556789',
-			'Timezone'             => TimezoneEnum::EASTERN_STANDARD_TIME,
-			'Address1'             => '4820 Lake Brook Dr',
-			'Address2'             => null,
-			'City'                 => 'Glen Allen',
-			'State'                => 'VA',
-			'PostalCode'           => '23060',
-			'Country'              => CountryEnum::US,
+		$tenantTurnerClient = $this->mockResponse(
+			200,
+			file_get_contents(__DIR__ . '/../../resources/customers/get.json')
+		);
+
+		$customer = $tenantTurnerClient->customers()->get('test@gmail.com');
+
+		$this->assertInstanceOf(CustomerDTO::class, $customer);
+		$this->assertSame(12345, $customer->getCustomerId());
+		$this->assertSame('q23c9r480tnyqc234nv9807yq324vn89cy0t', $customer->getApiKey());
+	}
+
+	public function getFilledCustomerDto(): CustomerCreateDTO
+	{
+		return CustomerCreateDTO::from([
+			'TenantCloudAccountId'   => 12350,
+			'TenantCloudAccountType' => TenantCloudAccountTypeEnum::LISTINGS,
+			'CompanyName'            => 'New Co',
+			'UserFirstName'          => 'John',
+			'UserLastName'           => 'Doe',
+			'Email'                  => 'john.doe@gmail.com',
+			'Phone'                  => '18045556789',
+			'Timezone'               => TimezoneEnum::EASTERN_STANDARD_TIME,
+			'Address1'               => '4820 Lake Brook Dr',
+			'Address2'               => null,
+			'City'                   => 'Glen Allen',
+			'State'                  => 'VA',
+			'PostalCode'             => '23060',
+			'Country'                => CountryEnum::US,
 		]);
 	}
 }

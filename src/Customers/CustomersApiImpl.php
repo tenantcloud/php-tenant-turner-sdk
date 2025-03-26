@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use TenantCloud\TenantTurner\Client\RequestHelper;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
+use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
@@ -20,13 +21,14 @@ class CustomersApiImpl implements CustomersApi
 	private const REFRESH_API_KEY = '/v1/customers/%s/refresh-api-key';
 	private const DEACTIVATE_CUSTOMER_API = '/v1/customers/%s';
 	private const STATUS_API = '/v1/customers/%s/status';
+	private const GET = '/v1/customers/%s';
 
 	public function __construct(
 		private readonly string $apiKey,
 		private readonly Client $httpClient,
 	) {}
 
-	public function create(CustomerDTO $customerDTO): CustomerCreatedDTO
+	public function create(CustomerCreateDTO $customerDTO): CustomerCreatedDTO
 	{
 		$jsonResponse = $this->httpClient->post(
 			self::CREATE_CUSTOMER_API,
@@ -56,7 +58,7 @@ class CustomersApiImpl implements CustomersApi
 		return RefreshedApiKeyDTO::from($response);
 	}
 
-	public function status(int $customerId): StatusDTO
+	public function status(int $customerId, ?string $fakeEmail = null): StatusDTO
 	{
 		$jsonResponse = $this->httpClient->get(
 			sprintf(self::STATUS_API, $customerId),
@@ -78,5 +80,19 @@ class CustomersApiImpl implements CustomersApi
 				RequestOptions::HEADERS => $this->setAuthHeader($this->apiKey),
 			]
 		);
+	}
+
+	public function get(string $email): CustomerDTO
+	{
+		$jsonResponse = $this->httpClient->get(
+			sprintf(self::GET, $email),
+			[
+				RequestOptions::HEADERS => $this->setAuthHeader($this->apiKey),
+			]
+		);
+
+		$response = psr_response_to_json($jsonResponse);
+
+		return CustomerDTO::from($response);
 	}
 }

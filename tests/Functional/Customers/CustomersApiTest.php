@@ -74,7 +74,7 @@ class CustomersApiTest extends TestCase
 			file_get_contents(__DIR__ . '/../../resources/customers/get.json')
 		);
 
-		$customer = $tenantTurnerClient->customers()->get('test@gmail.com');
+		$customer = $tenantTurnerClient->customers()->get('john.doe@gmail.com');
 
 		$this->assertInstanceOf(CustomerDTO::class, $customer);
 		$this->assertSame(12345, $customer->getCustomerId());

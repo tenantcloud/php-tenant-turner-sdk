@@ -1,3 +1,10 @@
+# [1.0.0-alpha.4](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2025-03-26)
+
+
+### Bug Fixes
+
+* Changed mail for test ([#15](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/15)) ([4da023b](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/4da023b7580bb63843c70f7543eb327c901eda31))
+
 # [1.0.0-alpha.3](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2025-03-26)
 
 

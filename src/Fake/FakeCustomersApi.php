@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use TenantCloud\TenantTurner\Customers\CustomersApi;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
+use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
 use TenantCloud\TenantTurner\Customers\Enum\TenantCloudAccountTypeEnum;
@@ -67,5 +68,12 @@ class FakeCustomersApi implements CustomersApi
 	public function deactivate(int $customerId): void
 	{
 		// do nothing
+	}
+
+	public function get(string $email): CustomerDTO
+	{
+		return CustomerDTO::create()
+			->setCustomerId(random_int(1, 100000))
+			->setApiKey(Str::random());
 	}
 }

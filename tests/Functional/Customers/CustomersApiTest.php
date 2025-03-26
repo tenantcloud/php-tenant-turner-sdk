@@ -4,6 +4,7 @@ namespace Tests\Functional\Customers;
 
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreatedDTO;
 use TenantCloud\TenantTurner\Customers\DTO\CustomerCreateDTO;
+use TenantCloud\TenantTurner\Customers\DTO\CustomerDTO;
 use TenantCloud\TenantTurner\Customers\DTO\RefreshedApiKeyDTO;
 use TenantCloud\TenantTurner\Customers\DTO\StatusDTO;
 use TenantCloud\TenantTurner\Customers\Enum\CountryEnum;
@@ -57,13 +58,27 @@ class CustomersApiTest extends TestCase
 		$this->assertTrue($status->getIsActive());
 	}
 
-	public function testDeactivateCustomerSuccess()
+	public function testDeactivateCustomerSuccess(): void
 	{
 		$this->expectNotToPerformAssertions();
 
 		$tenantTurnerClient = $this->mockResponse(204);
 
 		$tenantTurnerClient->customers()->deactivate(12345);
+	}
+
+	public function testGet(): void
+	{
+		$tenantTurnerClient = $this->mockResponse(
+			200,
+			file_get_contents(__DIR__ . '/../../resources/customers/get.json')
+		);
+
+		$customer = $tenantTurnerClient->customers()->get('test@gmail.com');
+
+		$this->assertInstanceOf(CustomerDTO::class, $customer);
+		$this->assertSame(12345, $customer->getCustomerId());
+		$this->assertSame('q23c9r480tnyqc234nv9807yq324vn89cy0t', $customer->getApiKey());
 	}
 
 	public function getFilledCustomerDto(): CustomerCreateDTO

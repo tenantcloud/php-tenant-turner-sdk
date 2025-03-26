@@ -1,3 +1,10 @@
+# [1.0.0-alpha.3](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2025-03-26)
+
+
+### Features
+
+* Added new fields for customers API ([#14](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/14)) ([a8fd8e8](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/a8fd8e8f145b36c1a360404ab973b93d3b27e97d))
+
 # [1.0.0-alpha.2](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2024-07-29)
 
 

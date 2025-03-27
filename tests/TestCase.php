@@ -44,6 +44,7 @@ class TestCase extends BaseTestCase
 			$config->get('tenant_turner.api_key') ?? '',
 			$config->get('tenant_turner.base_url') ?? '',
 			30,
+			null,
 			$client
 		));
 

@@ -1,3 +1,10 @@
+# [1.0.0-alpha.5](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-03-27)
+
+
+### Features
+
+* Added logging ([#16](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/16)) ([94fa585](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/94fa5853e35fab552528b7952521e8e2ce1e4b00))
+
 # [1.0.0-alpha.4](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2025-03-26)
 
 

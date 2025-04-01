@@ -1,3 +1,10 @@
+# [1.0.0-alpha.7](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-04-01)
+
+
+### Bug Fixes
+
+* Changed status dto ([#18](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/18)) ([3580441](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/3580441415f7a6467ebf0e3821da8de103a4d07b))
+
 # [1.0.0-alpha.6](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2025-04-01)
 
 

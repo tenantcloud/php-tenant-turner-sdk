@@ -14,9 +14,9 @@ use TenantCloud\DataTransferObjects\PascalDataTransferDTO;
  * @method self   setManageLeadsInTenantTurner(bool $manageLeadsInTenantTurner)
  * @method bool   getManageLeadsInTenantTurner()
  * @method bool   hasManageLeadsInTenantTurner()
- * @method self   setIsActive(bool $isActive)
- * @method bool   getIsActive()
- * @method bool   hasIsActive()
+ * @method self   setListingPhone(string $listingPhone)
+ * @method string getListingPhone()
+ * @method bool   hasListingPhone()
  */
 class StatusDTO extends PascalDataTransferDTO
 {
@@ -24,6 +24,6 @@ class StatusDTO extends PascalDataTransferDTO
 		'TenantCloudAccountId',
 		'TenantCloudAccountType',
 		'ManageLeadsInTenantTurner',
-		'IsActive',
+		'ListingPhone',
 	];
 }

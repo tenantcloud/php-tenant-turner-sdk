@@ -54,7 +54,7 @@ class CustomersApiTest extends TestCase
 		$status = $tenantTurnerClient->customers()->status(12345);
 
 		$this->assertInstanceOf(StatusDTO::class, $status);
-		$this->assertTrue($status->getIsActive());
+		$this->assertSame('188888888', $status->getListingPhone());
 	}
 
 	public function testDeactivateCustomerSuccess(): void

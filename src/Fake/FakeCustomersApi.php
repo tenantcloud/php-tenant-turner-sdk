@@ -44,7 +44,7 @@ class FakeCustomersApi implements CustomersApi
 		if ($fakeEmail === 'subscribed_turner@tenantcloud.com') {
 			return StatusDTO::create()
 				->setTenantCloudAccountType(TenantCloudAccountTypeEnum::SUBSCRIPTION->value)
-				->setIsActive(true)
+				->setListingPhone('188888888')
 				->setManageLeadsInTenantTurner(true)
 				->setTenantCloudAccountId($customerId);
 		}
@@ -52,13 +52,13 @@ class FakeCustomersApi implements CustomersApi
 		if ($fakeEmail === 'listings+leads_turner@tenantcloud.com') {
 			return StatusDTO::create()
 				->setTenantCloudAccountType(TenantCloudAccountTypeEnum::LISTINGS->value)
-				->setIsActive(true)
+				->setListingPhone('188888888')
 				->setManageLeadsInTenantTurner(true)
 				->setTenantCloudAccountId($customerId);
 		}
 
 		return StatusDTO::create()
-			->setIsActive(true)
+			->setListingPhone('188888888')
 			->setManageLeadsInTenantTurner(false)
 			->setTenantCloudAccountType(TenantCloudAccountTypeEnum::LISTINGS->value)
 			->setTenantCloudAccountId($customerId);

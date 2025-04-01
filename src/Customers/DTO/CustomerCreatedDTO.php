@@ -11,8 +11,6 @@ use TenantCloud\DataTransferObjects\PascalDataTransferDTO;
  * @method self   setListingEmail(string $listingEmail)
  * @method string getListingEmail()
  * @method bool   hasListingEmail()
- * @method self   setListingPhone(string $listingPhone)
- * @method string getListingPhone()
  * @method bool   hasListingPhone()
  * @method self   setApiKey(string $apiKey)
  * @method string getApiKey()
@@ -23,7 +21,6 @@ class CustomerCreatedDTO extends PascalDataTransferDTO
 	protected array $fields = [
 		'CustomerId',
 		'ListingEmail',
-		'ListingPhone',
 		'ApiKey',
 	];
 }

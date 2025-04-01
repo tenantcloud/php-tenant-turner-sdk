@@ -1,3 +1,10 @@
+# [1.0.0-alpha.6](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2025-04-01)
+
+
+### Bug Fixes
+
+* Removed listing phone from create customer response ([#17](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/17)) ([b58887d](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/b58887d1393a74c03a1563d270cf4d784ab6d9c1))
+
 # [1.0.0-alpha.5](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-03-27)
 
 

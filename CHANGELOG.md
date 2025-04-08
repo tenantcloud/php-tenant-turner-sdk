@@ -1,3 +1,10 @@
+# [1.0.0-alpha.8](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2025-04-08)
+
+
+### Bug Fixes
+
+* Make nullable manage_leads_in_tenant_turner field ([#19](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/19)) ([3dbc7af](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/3dbc7afb380cc1a25dee6c427c19bbd666be046b))
+
 # [1.0.0-alpha.7](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-04-01)
 
 

@@ -45,7 +45,7 @@ class FakeCustomersApi implements CustomersApi
 			return StatusDTO::create()
 				->setTenantCloudAccountType(TenantCloudAccountTypeEnum::SUBSCRIPTION->value)
 				->setListingPhone('188888888')
-				->setManageLeadsInTenantTurner(true)
+				->setManageLeadsInTenantTurner(null)
 				->setTenantCloudAccountId($customerId);
 		}
 

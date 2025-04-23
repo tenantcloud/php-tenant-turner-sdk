@@ -47,6 +47,9 @@ use TenantCloud\TenantTurner\Customers\Enum\TimezoneEnum;
  * @method bool        hasPostalCode()
  * @method string      getCountry()
  * @method bool        hasCountry()
+ * @method self        setUnitCount(int $unitCount)
+ * @method int|null    getUnitCount()
+ * @method bool        hasUnitCount()
  */
 class CustomerCreateDTO extends PascalDataTransferDTO
 {
@@ -65,6 +68,7 @@ class CustomerCreateDTO extends PascalDataTransferDTO
 		'State',
 		'PostalCode',
 		'Country',
+		'UnitCount',
 	];
 
 	public function setTenantCloudAccountType(TenantCloudAccountTypeEnum $tenantCloudAccountTypeEnum): self

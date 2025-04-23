@@ -97,6 +97,7 @@ class CustomersApiTest extends TestCase
 			'State'                  => 'VA',
 			'PostalCode'             => '23060',
 			'Country'                => CountryEnum::US,
+			'UnitCount'              => 13,
 		]);
 	}
 }

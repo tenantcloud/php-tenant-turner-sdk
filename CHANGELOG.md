@@ -1,3 +1,11 @@
+# [1.0.0-alpha.9](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2025-07-03)
+
+
+### Features
+
+* Added template sync ([6261e34](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/6261e34595a463ed7232c6ed5f3e1175a6c2fee9))
+* Added template sync ([0e3b736](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/0e3b736b69e7cb8b7034d0335ecd67709a449b17))
+
 # [1.0.0-alpha.8](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2025-04-08)
 
 

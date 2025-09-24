@@ -29,6 +29,7 @@ class CustomersApiTest extends TestCase
 		$this->assertSame(67890, $createdCustomerDto->getCustomerId());
 		$this->assertSame('leads+67890@tenantturnermail.com', $createdCustomerDto->getListingEmail());
 		$this->assertSame('q23c9r480tnyqc234nv9807yq324vn89cy0t', $createdCustomerDto->getApiKey());
+		$this->assertSame('555-123-4567', $createdCustomerDto->getListingPhone());
 	}
 
 	public function testRefreshApiKey(): void

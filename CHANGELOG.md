@@ -4,6 +4,14 @@
 ### Bug Fixes
 
 * Add dto key listing phone when create customer ([#24](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/24)) ([d60b55d](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/d60b55d6f37aace1ba42fc9ca0d7e2dba0390da7))
+* Revert Add dto key listing phone when create customer ([#24](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/24)) ([287647b](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/287647b5302fe1a05cf15bf00640aa7c13eeac22))
+
+# [1.0.0-alpha.10](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2025-09-24)
+
+
+### Bug Fixes
+
+* Add dto key listing phone when create customer ([#24](https://github.com/tenantcloud/php-tenant-turner-sdk/issues/24)) ([d60b55d](https://github.com/tenantcloud/php-tenant-turner-sdk/commit/d60b55d6f37aace1ba42fc9ca0d7e2dba0390da7))
 
 # [1.0.0-alpha.9](https://github.com/tenantcloud/php-tenant-turner-sdk/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2025-07-03)
 

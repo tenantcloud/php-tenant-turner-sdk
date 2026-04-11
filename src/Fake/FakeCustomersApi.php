@@ -14,9 +14,7 @@ use TenantCloud\TenantTurner\Customers\Enum\TenantCloudAccountTypeEnum;
 
 class FakeCustomersApi implements CustomersApi
 {
-	public function __construct(
-		private readonly Repository $cache
-	) {}
+	public function __construct(private readonly Repository $cache) {}
 
 	public function create(CustomerCreateDTO $customerDTO): CustomerCreatedDTO
 	{

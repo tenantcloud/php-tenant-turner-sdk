@@ -10,9 +10,7 @@ use TenantCloud\TenantTurner\Properties\PropertiesApi;
 
 class FakePropertiesApi implements PropertiesApi
 {
-	public function __construct(
-		private readonly Repository $cache
-	) {}
+	public function __construct(private readonly Repository $cache) {}
 
 	public function create(string $userApiKey, PropertyDTO $propertyDTO): int
 	{

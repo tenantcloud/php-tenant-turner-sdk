@@ -20,9 +20,7 @@ class PropertiesApiImpl implements PropertiesApi
 	private const ACTIVATE_PROPERTY_API = '/v1/properties/%s/activate';
 	private const DEACTIVATE_PROPERTY_API = '/v1/properties/%s/deactivate';
 
-	public function __construct(
-		private readonly Client $httpClient,
-	) {}
+	public function __construct(private readonly Client $httpClient) {}
 
 	public function create(string $userApiKey, PropertyDTO $propertyDTO): int
 	{
